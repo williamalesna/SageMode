@@ -1,0 +1,16 @@
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/Exercise3-2
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/Exercise3-2.deps.json
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/Exercise3-2.runtimeconfig.json
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/Exercise3-2.runtimeconfig.dev.json
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/Exercise3-2.dll
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/ref/Exercise3-2.dll
+/home/alesnakenshin/Projects/Exercise3-2/bin/Debug/net6.0/Exercise3-2.pdb
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.csproj.AssemblyReference.cache
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.GeneratedMSBuildEditorConfig.editorconfig
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.AssemblyInfoInputs.cache
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.AssemblyInfo.cs
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.csproj.CoreCompileInputs.cache
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.dll
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/ref/Exercise3-2.dll
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.pdb
+/home/alesnakenshin/Projects/Exercise3-2/obj/Debug/net6.0/Exercise3-2.genruntimeconfig.cache
