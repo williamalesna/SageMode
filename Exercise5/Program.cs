@@ -79,7 +79,7 @@ while (true)
         int newValue = int.Parse(Console.ReadLine());
 
         MakeSeparator();
-        
+
         AddNewTableValue(tableCopy, x_Coordinate, y_Coordinate, newValue, maxRows, maxCols);
     }
     else
