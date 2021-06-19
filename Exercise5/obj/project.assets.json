@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alesnakenshin/Projects/Exercise5/Exercise5.csproj",
+      "projectUniqueName": "/home/alesnakenshin/SageMode/Exercise5/Exercise5.csproj",
       "projectName": "Exercise5",
-      "projectPath": "/home/alesnakenshin/Projects/Exercise5/Exercise5.csproj",
+      "projectPath": "/home/alesnakenshin/SageMode/Exercise5/Exercise5.csproj",
       "packagesPath": "/home/alesnakenshin/.nuget/packages/",
-      "outputPath": "/home/alesnakenshin/Projects/Exercise5/obj/",
+      "outputPath": "/home/alesnakenshin/SageMode/Exercise5/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/alesnakenshin/.nuget/NuGet/NuGet.Config"
