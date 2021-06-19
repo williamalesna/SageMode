@@ -1,65 +1,15 @@
 ﻿using System;
 
-static int[,] StoreTableValue(int rows, int cols)
-{
-    int[,] table = new int[rows, cols];
-
-    int x = 0;
-    int y = 0;
-
-    for (x = 0; x < rows; x++)
-    {
-        for (y = 0; y < cols; y++)
-        {
-            table[x, y] = (x + 1) * (y + 1);
-        }
-    }
-    return table;
-}
-
-static void AddNewTableValue(int[,] table, int xCoor, int yCoor, int newVal, int rows, int cols)
-{
-    int[,] newTable = table;
-    newTable[xCoor, yCoor] = newVal;
-
-    for (int j = 0; j < rows; j++)
-    {
-        for (int k = 0; k < cols; k++)
-        {
-            Console.Write(newTable[j, k] + "\t");
-        }
-        Console.WriteLine();
-    }
-}
-
-static void MakeSeparator()
-{
-    for (int col = 1; col <= 100; col++)
-    {
-        Console.Write("-");
-    }
-    Console.WriteLine();
-}
-
-int maxRows, maxCols;
 Console.WriteLine("GENERATE MULTIPLICATION TABLE");
 Console.Write("Enter Max Row: ");
-maxRows = int.Parse(Console.ReadLine());
+int maxRows = int.Parse(Console.ReadLine());
 Console.Write("Enter Max Column: ");
-maxCols = int.Parse(Console.ReadLine());
+int maxCols = int.Parse(Console.ReadLine());
 
 MakeSeparator();
-
-int[,] tableCopy = StoreTableValue(maxRows, maxCols);
-
-for (int j = 0; j < maxRows; j++)
-{
-    for (int k = 0; k < maxCols; k++)
-    {
-        Console.Write(tableCopy[j, k] + "\t");
-    }
-    Console.WriteLine();
-}
+int[,] mainTable = new int[maxRows, maxCols];
+GenerateTable(mainTable);
+RefreshTable(mainTable);
 
 while (true)
 {
@@ -79,8 +29,8 @@ while (true)
         int newValue = int.Parse(Console.ReadLine());
 
         MakeSeparator();
-
-        AddNewTableValue(tableCopy, x_Coordinate, y_Coordinate, newValue, maxRows, maxCols);
+        mainTable[x_Coordinate-1, y_Coordinate-1] = newValue;
+        RefreshTable(mainTable);
     }
     else
     {
@@ -89,4 +39,37 @@ while (true)
         Console.Clear();
         break;
     }
+}
+
+static int[,] GenerateTable(int[,] table)
+{
+    for (int x = 0; x < table.GetLength(0); x++)
+    {
+        for (int y = 0; y < table.GetLength(1); y++)
+        {
+            table[x, y] = (x + 1) * (y + 1);
+        }
+    }
+    return table;
+}
+
+static void RefreshTable(int[,] table)
+{
+    for (int x = 0; x < table.GetLength(0); x++)
+    {
+        for (int y = 0; y < table.GetLength(1); y++)
+        {
+            Console.Write(table[x, y] + "\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+static void MakeSeparator()
+{
+    for (int col = 1; col <= 100; col++)
+    {
+        Console.Write("-");
+    }
+    Console.WriteLine();
 }
