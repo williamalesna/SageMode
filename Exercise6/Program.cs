@@ -7,7 +7,7 @@ int maxRow = ValidateInput();
 Console.Write("Enter Max Column: ");
 int maxCol = ValidateInput();
 
-Multiplication table1 = new Multiplication(maxRow, maxCol);
+MultiplicationTable table1 = new MultiplicationTable(maxRow, maxCol);
 
 Console.ForegroundColor = ConsoleColor.Blue;
 Console.Write("Table generated successfully! ");
@@ -46,6 +46,7 @@ while(true)
 
         MakeSeparator();
         table1.ChangeTableValue(xCoordinate, yCoordinate, newValue);
+        table1.DisplayTable();
         MakeSeparator();
     }
     else

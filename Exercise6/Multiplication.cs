@@ -1,16 +1,18 @@
 using System;
 
-public class Multiplication
+public class MultiplicationTable
 {
     public int maxRow;
     public int maxCol;
     public int[,] table;
+    public bool[,] modifiedTable;
   
-    public Multiplication(int aMaxRow, int aMaxCol)
+    public MultiplicationTable(int aMaxRow, int aMaxCol)
     {
         maxRow = aMaxRow;
         maxCol = aMaxCol;
         table = new int[maxRow, maxCol];
+        modifiedTable = new bool[maxRow, maxCol];
     }
 
     public void GenerateTable()
@@ -29,15 +31,19 @@ public class Multiplication
     public void ChangeTableValue(int xCoordinate, int yCoordinate, int newValue)
     {
         table[xCoordinate, yCoordinate] = newValue;
-        
+        modifiedTable[xCoordinate, yCoordinate] = true;
+    }
+
+    public void DisplayTable()
+    {
         for (int x = 0; x < table.GetLength(0); x++)
         {
             for (int y = 0; y < table.GetLength(1); y++)
             {
-                if(x == xCoordinate && y == yCoordinate)
+                if(modifiedTable[x,y])
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(table[xCoordinate,yCoordinate] + "\t");
+                    Console.Write(table[x,y] + "\t");
                     Console.ResetColor();
                 }
                 else
@@ -48,4 +54,5 @@ public class Multiplication
             Console.WriteLine();
         }
     }
+        
 }
