@@ -2,28 +2,22 @@
 
 Console.Clear();
 Console.WriteLine("GENERATE MULTIPLICATION TABLE");
-Console.Write("Enter Max Row: ");
-int maxRow = ValidateInput();
-Console.Write("Enter Max Column: ");
-int maxCol = ValidateInput();
+int maxRow = ReadIntInput("Enter Max Row: ");
+int maxCol = ReadIntInput("Enter Max Column: ");
 
-MultiplicationTable table1 = new MultiplicationTable(maxRow, maxCol);
+MultiplicationTable multiplicationTable1 = new(maxRow, maxCol);
+bool[,] modifiedTable = multiplicationTable1.ModifiedTable;
+int[,] table = multiplicationTable1.Table;
 
-Console.ForegroundColor = ConsoleColor.Blue;
-Console.Write("Table generated successfully! ");
-Console.ResetColor();
-Console.Write("Press any key to continue...");
-Console.ReadKey();
 Console.Clear();
 Console.ForegroundColor = ConsoleColor.Magenta;
 Console.WriteLine("GENERATED TABLE");
 Console.ResetColor();
+Console.Write("-------------------------------------------------------------------------------------------------\n");
+DisplayTableValue(table);
+Console.Write("-------------------------------------------------------------------------------------------------\n");
 
-MakeSeparator();
-table1.GenerateTable();
-MakeSeparator();
-
-while(true)
+while (true)
 {
     Console.Write("Press any key to continue...");
     Console.ReadKey();
@@ -31,64 +25,56 @@ while(true)
     Console.Write("Do you want to change a number in any coordinate? (y/n): ");
     string choice = Console.ReadLine();
 
-    if(choice == "y" || choice == "Y")
+    if (choice == "y" || choice == "Y")
     {
-        Console.Write("Enter coordinate X: ");
-        int xCoordinate = ValidateInput() - 1;
-        Console.Write("Enter coordinate y: ");
-        int yCoordinate = ValidateInput() - 1;
-        Console.Write("Enter new value: ");
-        int newValue = ValidateInput();
+        int xCoordinate = ReadIntInput("Enter coordinate X: ") - 1;
+        int yCoordinate = ReadIntInput("Enter coordinate Y: ") - 1;
+        int newValue = ReadIntInput("Enter new value: ");
 
         Console.ForegroundColor = ConsoleColor.Magenta;
         Console.WriteLine("\nNEWLY EDITED TABLE");
         Console.ResetColor();
 
-        MakeSeparator();
-        table1.ChangeTableValue(xCoordinate, yCoordinate, newValue);
-        table1.DisplayTable();
-        MakeSeparator();
+        Console.Write("-------------------------------------------------------------------------------------------------\n");
+        ChangeTableValue(xCoordinate, yCoordinate, newValue);
+        DisplayTableValue(table);
+        Console.Write("-------------------------------------------------------------------------------------------------\n");
+
     }
-    else
+    else if (choice == "n" || choice == "N")
     {
         Console.Write("Press any key to exit... ");
         Console.ReadKey();
         Console.Clear();
         break;
     }
-}
-
-void MakeSeparator()
-{
-    for(int x = 0; x <= 100; x++)
+    else
     {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write("-");
+        continue;
     }
-    Console.ResetColor();
-    Console.WriteLine();
 }
 
-int ValidateInput()
+int ReadIntInput(string request)
 {
     int output;
     bool reEnter = false;
+    Console.Write(request);
 
-    while(true)
+    while (true)
     {
-        if(reEnter == true)
+        if (reEnter == true)
         {
-            Console.Write("Please Enter Again: ");
+            Console.Write(request);
         }
 
         string input = Console.ReadLine();
         bool result = int.TryParse(input, out output);
 
-        if(result == true || result == false)
+        if (result == true || result == false)
         {
-            if(result == true)
+            if (result == true)
             {
-                if(output <= 0)
+                if (output <= 0)
                 {
                     reEnter = true;
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -97,7 +83,7 @@ int ValidateInput()
                     continue;
                 }
             }
-            if(result == false)
+            if (result == false)
             {
                 reEnter = true;
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -109,4 +95,31 @@ int ValidateInput()
         break;
     }
     return output;
+}
+
+void DisplayTableValue(int[,] table)
+{
+    for (int x = 0; x < table.GetLength(0); x++)
+    {
+        for (int y = 0; y < table.GetLength(1); y++)
+        {
+            if (modifiedTable[x, y])
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(table[x, y] + "\t");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.Write(table[x, y] + "\t");
+            }
+        }
+        Console.WriteLine();
+    }
+}
+
+void ChangeTableValue(int xCoordinate, int yCoordinate, int newValue)
+{
+    table[xCoordinate, yCoordinate] = newValue;
+    modifiedTable[xCoordinate, yCoordinate] = true;
 }
