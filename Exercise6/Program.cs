@@ -5,7 +5,7 @@ Console.WriteLine("GENERATE MULTIPLICATION TABLE");
 int maxRow = ReadIntInput("Enter Max Row: ");
 int maxCol = ReadIntInput("Enter Max Column: ");
 
-MultiplicationTable multiplicationTable1 = new(maxRow, maxCol);
+MultiplicationTableGenerator multiplicationTable1 = new(maxRow, maxCol);
 bool[,] modifiedTable = multiplicationTable1.ModifiedTable;
 int[,] table = multiplicationTable1.Table;
 
