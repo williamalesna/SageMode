@@ -23,9 +23,9 @@ while (true)
     Console.ReadKey();
     Console.Clear();
     Console.Write("Do you want to change a number in any coordinate? (y/n): ");
-    string choice = Console.ReadLine();
+    string choice = Console.ReadLine().ToLower();
 
-    if (choice == "y" || choice == "Y")
+    if (choice == "y")
     {
         int xCoordinate = ReadIntInput("Enter coordinate X: ") - 1;
         int yCoordinate = ReadIntInput("Enter coordinate Y: ") - 1;
@@ -39,9 +39,8 @@ while (true)
         ChangeTableValue(xCoordinate, yCoordinate, newValue);
         DisplayTableValue(table);
         Console.Write("-------------------------------------------------------------------------------------------------\n");
-
     }
-    else if (choice == "n" || choice == "N")
+    else if (choice == "n")
     {
         Console.Write("Press any key to exit... ");
         Console.ReadKey();
