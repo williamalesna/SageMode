@@ -28,9 +28,9 @@ public class MultiplicationTable
 
     public void ResetTable()
     {
-        for (int x = 0; x < InternalTable.GetLength(0); x++)
+        for (var x = 0; x < InternalTable.GetLength(0); x++)
         {
-            for (int y = 0; y < InternalTable.GetLength(1); y++)
+            for (var y = 0; y < InternalTable.GetLength(1); y++)
             {
                 InternalTable[x, y] = (x + 1) * (y + 1);
                 ModifiedTable[x, y] = false;

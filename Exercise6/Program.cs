@@ -2,10 +2,10 @@
 
 Console.Clear();
 Console.WriteLine("GENERATE MULTIPLICATION TABLE");
-int maxRow = ReadIntInput("Enter Max Row: ");
-int maxCol = ReadIntInput("Enter Max Column: ");
+var maxRow = ReadIntInput("Enter Max Row: ");
+var maxCol = ReadIntInput("Enter Max Column: ");
 
-MultiplicationTable multiplicationTable1 = new(maxRow, maxCol);
+var multiplicationTable1 = new MultiplicationTable(maxRow, maxCol);
 
 Console.Clear();
 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -21,13 +21,13 @@ while (true)
     Console.ReadKey();
     Console.Clear();
     Console.Write("Do you want to change a number in any coordinate? (y/n): ");
-    string choice = Console.ReadLine().ToLower();
+    var choice = Console.ReadLine().ToLower();
 
     if (choice == "y")
     {
-        int xCoord = ReadIntInput("Enter coordinate X: ") - 1;
-        int yCoord = ReadIntInput("Enter coordinate Y: ") - 1;
-        int newValue = ReadIntInput("Enter new value: ");
+        var xCoord = ReadIntInput("Enter coordinate X: ") - 1;
+        var yCoord = ReadIntInput("Enter coordinate Y: ") - 1;
+        var newValue = ReadIntInput("Enter new value: ");
 
         Console.ForegroundColor = ConsoleColor.Magenta;
         Console.WriteLine("\nNEWLY EDITED TABLE");
@@ -57,8 +57,8 @@ int ReadIntInput(string request)
     {
         Console.Write(request);
 
-        string input = Console.ReadLine();
-        bool result = int.TryParse(input, out int output);
+        var input = Console.ReadLine();
+        var result = int.TryParse(input, out var output);
 
         if (!result || output <= 0)
         {
@@ -75,9 +75,9 @@ void DisplayTable()
 {
     var table = multiplicationTable1.Table;
 
-    for (int x = 0; x < table.GetLength(0); x++)
+    for (var x = 0; x < table.GetLength(0); x++)
     {
-        for (int y = 0; y < table.GetLength(1); y++)
+        for (var y = 0; y < table.GetLength(1); y++)
         {
             if (multiplicationTable1.IsCoordinatesModified(x, y))
             {
