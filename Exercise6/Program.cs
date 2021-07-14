@@ -5,16 +5,14 @@ Console.WriteLine("GENERATE MULTIPLICATION TABLE");
 int maxRow = ReadIntInput("Enter Max Row: ");
 int maxCol = ReadIntInput("Enter Max Column: ");
 
-MultiplicationTableGenerator multiplicationTable1 = new(maxRow, maxCol);
-bool[,] modifiedTable = multiplicationTable1.ModifiedTable;
-int[,] table = multiplicationTable1.Table;
+MultiplicationTable multiplicationTable1 = new(maxRow, maxCol);
 
 Console.Clear();
 Console.ForegroundColor = ConsoleColor.Magenta;
 Console.WriteLine("GENERATED TABLE");
 Console.ResetColor();
 Console.Write("-------------------------------------------------------------------------------------------------\n");
-DisplayTableValue(table);
+DisplayTable();
 Console.Write("-------------------------------------------------------------------------------------------------\n");
 
 while (true)
@@ -27,8 +25,8 @@ while (true)
 
     if (choice == "y")
     {
-        int xCoordinate = ReadIntInput("Enter coordinate X: ") - 1;
-        int yCoordinate = ReadIntInput("Enter coordinate Y: ") - 1;
+        int xCoord = ReadIntInput("Enter coordinate X: ") - 1;
+        int yCoord = ReadIntInput("Enter coordinate Y: ") - 1;
         int newValue = ReadIntInput("Enter new value: ");
 
         Console.ForegroundColor = ConsoleColor.Magenta;
@@ -36,8 +34,8 @@ while (true)
         Console.ResetColor();
 
         Console.Write("-------------------------------------------------------------------------------------------------\n");
-        ChangeTableValue(xCoordinate, yCoordinate, newValue);
-        DisplayTableValue(table);
+        multiplicationTable1.SetValueInCoordinate(yCoord, xCoord, newValue);
+        DisplayTable();
         Console.Write("-------------------------------------------------------------------------------------------------\n");
     }
     else if (choice == "n")
@@ -55,54 +53,33 @@ while (true)
 
 int ReadIntInput(string request)
 {
-    int output;
-    bool reEnter = false;
-    Console.Write(request);
-
     while (true)
     {
-        if (reEnter == true)
-        {
-            Console.Write(request);
-        }
+        Console.Write(request);
 
         string input = Console.ReadLine();
-        bool result = int.TryParse(input, out output);
+        bool result = int.TryParse(input, out int output);
 
-        if (result == true || result == false)
+        if (!result || output <= 0)
         {
-            if (result == true)
-            {
-                if (output <= 0)
-                {
-                    reEnter = true;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid input! Please enter again.");
-                    Console.ResetColor();
-                    continue;
-                }
-            }
-            if (result == false)
-            {
-                reEnter = true;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid input! Please enter again.");
-                Console.ResetColor();
-                continue;
-            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Invalid input! Please enter again.");
+            Console.ResetColor();
+            continue;
         }
-        break;
+        return output;
     }
-    return output;
 }
 
-void DisplayTableValue(int[,] table)
+void DisplayTable()
 {
+    var table = multiplicationTable1.Table;
+
     for (int x = 0; x < table.GetLength(0); x++)
     {
         for (int y = 0; y < table.GetLength(1); y++)
         {
-            if (modifiedTable[x, y])
+            if (multiplicationTable1.IsCoordinatesModified(x, y))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(table[x, y] + "\t");
@@ -115,10 +92,4 @@ void DisplayTableValue(int[,] table)
         }
         Console.WriteLine();
     }
-}
-
-void ChangeTableValue(int xCoordinate, int yCoordinate, int newValue)
-{
-    table[xCoordinate, yCoordinate] = newValue;
-    modifiedTable[xCoordinate, yCoordinate] = true;
 }
